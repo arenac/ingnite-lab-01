@@ -1,4 +1,9 @@
-import { useUser, withPageAuthRequired } from "@auth0/nextjs-auth0";
+import {
+  getAccessToken,
+  useUser,
+  withPageAuthRequired,
+} from "@auth0/nextjs-auth0";
+import { GetServerSideProps } from "next";
 import Link from "next/link";
 
 export default function Home() {
@@ -16,4 +21,13 @@ export default function Home() {
   );
 }
 
-export const getServerSideProps = withPageAuthRequired();
+// export const getServerSideProps = withPageAuthRequired();
+export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+  const token = getAccessToken(req, res);
+
+  console.log(token);
+
+  return {
+    props: {},
+  };
+};
