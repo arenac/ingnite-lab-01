@@ -1,5 +1,8 @@
 import { Field, InputType } from '@nestjs/graphql';
-import { CreateProductParams } from '../../../services/products.service';
+
+export interface CreateProductParams {
+  title: string;
+}
 
 @InputType()
 export class CreateProductInput implements CreateProductParams {

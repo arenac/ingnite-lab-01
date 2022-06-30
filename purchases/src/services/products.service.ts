@@ -2,10 +2,8 @@ import { Injectable } from '@nestjs/common';
 import slugify from 'slugify';
 
 import { PrismaService } from '../database/prisma/prisma.service';
+import { CreateProductParams } from '../http/graphql/inputs/create-product-input';
 
-export interface CreateProductParams {
-  title: string;
-}
 @Injectable()
 export class ProductsService {
   constructor(private prisma: PrismaService) {}
