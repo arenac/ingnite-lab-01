@@ -7,7 +7,7 @@ import {
   ResolveField,
   Resolver,
 } from '@nestjs/graphql';
-import { CustomerService } from '../../../services/customers.service';
+import { CustomersService } from '../../../services/customers.service';
 import { ProductsService } from '../../../services/products.service';
 
 import { PurchasesService } from '../../../services/purchases.service';
@@ -23,7 +23,7 @@ export class PurchaseResolver {
   constructor(
     private purchasesService: PurchasesService,
     private productsServices: ProductsService,
-    private customersServices: CustomerService,
+    private customersServices: CustomersService,
   ) {}
 
   @Query(() => [Purchase])

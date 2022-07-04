@@ -4,7 +4,7 @@ import { PrismaService } from '../database/prisma/prisma.service';
 import { CreateCustomerParams } from '../http/graphql/inputs/create-customer-input';
 
 @Injectable()
-export class CustomerService {
+export class CustomersService {
   constructor(private prisma: PrismaService) {}
 
   async listAllProducts() {
