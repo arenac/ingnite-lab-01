@@ -6,6 +6,7 @@ import {
 } from "@auth0/nextjs-auth0";
 import { GetServerSideProps } from "next";
 import Link from "next/link";
+import { useMe } from "../../graphql/generated/page";
 
 import {
   getServerPageGetProducts,
@@ -16,11 +17,15 @@ import { withApollo } from "../../lib/withApollo";
 function Home({ data }) {
   const { user } = useUser();
 
+  const { data: me } = useMe();
+
   return (
     <div>
       <h1>Hey!</h1>
 
-      <pre>{JSON.stringify(data.products, null, 2)}</pre>
+      {/* <pre>{JSON.stringify(data.products, null, 2)}</pre> */}
+
+      <pre>{JSON.stringify(me, null, 2)}</pre>
 
       <pre>{JSON.stringify(user, null, 2)}</pre>
 
@@ -35,7 +40,9 @@ function Home({ data }) {
 export const getServerSideProps: GetServerSideProps = async (context) => {
   // const token = getAccessToken(req, res);
   // console.log(token);
-  return getServerPageGetProducts(null, context);
+  return {
+    props: {},
+  };
 };
 
 export default withApollo(ssrGetProducts.withPage()(Home));
