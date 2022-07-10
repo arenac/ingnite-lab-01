@@ -7,18 +7,20 @@ import {
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 
-import { useGetProductsQuery } from "../../graphql/generated/graphql";
+import {
+  getServerPageGetProducts,
+  ssrGetProducts,
+} from "../../graphql/generated/pagePublic";
 import { withApollo } from "../../lib/withApollo";
 
-function Home() {
+function Home({ data }) {
   const { user } = useUser();
-  const { data, loading, error } = useGetProductsQuery();
 
   return (
     <div>
       <h1>Hey!</h1>
 
-      <pre>{JSON.stringify({ data }, null, 2)}</pre>
+      <pre>{JSON.stringify(data.products, null, 2)}</pre>
 
       <pre>{JSON.stringify(user, null, 2)}</pre>
 
@@ -30,13 +32,10 @@ function Home() {
 }
 
 // export const getServerSideProps = withPageAuthRequired();
-export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
   // const token = getAccessToken(req, res);
   // console.log(token);
-
-  return {
-    props: {},
-  };
+  return getServerPageGetProducts(null, context);
 };
 
-export default withApollo(Home);
+export default withApollo(ssrGetProducts.withPage()(Home));
