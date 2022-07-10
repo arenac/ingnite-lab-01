@@ -7,6 +7,8 @@ import {
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 
+import { withApollo } from "../../lib/withApollo";
+
 const PRODUCTS_QUERY = gql`
   query GetProducts {
     products {
@@ -16,7 +18,7 @@ const PRODUCTS_QUERY = gql`
   }
 `;
 
-export default function Home() {
+function Home() {
   const { user } = useUser();
   const { data, loading, error } = useQuery(PRODUCTS_QUERY);
 
@@ -37,11 +39,14 @@ export default function Home() {
 
 // export const getServerSideProps = withPageAuthRequired();
 export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
-  const token = getAccessToken(req, res);
-
-  console.log(token);
+  // const token = getAccessToken(req, res);
+  // console.log(token);
 
   return {
-    props: {},
+    props: {
+      apolloState,
+    },
   };
 };
+
+export default withApollo(Home);
