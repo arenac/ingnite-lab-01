@@ -7,20 +7,12 @@ import {
 import { GetServerSideProps } from "next";
 import Link from "next/link";
 
+import { useGetProductsQuery } from "../../graphql/generated/graphql";
 import { withApollo } from "../../lib/withApollo";
-
-const PRODUCTS_QUERY = gql`
-  query GetProducts {
-    products {
-      id
-      title
-    }
-  }
-`;
 
 function Home() {
   const { user } = useUser();
-  const { data, loading, error } = useQuery(PRODUCTS_QUERY);
+  const { data, loading, error } = useGetProductsQuery();
 
   return (
     <div>
@@ -43,9 +35,7 @@ export const getServerSideProps: GetServerSideProps = async ({ req, res }) => {
   // console.log(token);
 
   return {
-    props: {
-      apolloState,
-    },
+    props: {},
   };
 };
 
