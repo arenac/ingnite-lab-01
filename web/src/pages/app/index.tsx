@@ -20,7 +20,7 @@ function Home({ data }) {
   const { data: me } = useMe();
 
   return (
-    <div>
+    <div className="text-yellow-600">
       <h1>Hey!</h1>
 
       {/* <pre>{JSON.stringify(data.products, null, 2)}</pre> */}
