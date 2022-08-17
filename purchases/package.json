@@ -29,7 +29,7 @@
     "@nestjs/graphql": "^10.0.13",
     "@nestjs/microservices": "^8.4.7",
     "@nestjs/platform-express": "^8.4.6",
-    "@prisma/client": "^3.14.0",
+    "@prisma/client": "^4.2.1",
     "apollo-server-express": "^3.8.1",
     "express-jwt": "^7.7.2",
     "graphql": "^15.8.0",
