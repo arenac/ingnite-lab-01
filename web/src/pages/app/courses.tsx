@@ -37,6 +37,8 @@ const dateFormatter = new Intl.DateTimeFormat("pt-BR", {
 function Courses() {
   const { data } = useMe();
 
+  console.log(data);
+
   return (
     <>
       <Head>

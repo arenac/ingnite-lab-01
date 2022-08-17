@@ -3,7 +3,7 @@ import { CalendarIcon } from "@heroicons/react/solid";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { GetStaticProps } from "next";
-// import { withPublicApollo } from "../lib/withPublicApollo";
+import { withPublicApollo } from "../lib/withPublicApollo";
 import {
   getServerPageGetProducts,
   ssrGetProducts,
@@ -12,7 +12,6 @@ import {
   GetProductsQuery,
   // useCreatePurchaseMutation,
 } from "../graphql/generated/graphql";
-import { withApollo } from "../lib/withApollo";
 
 interface EnrollProps {
   data: GetProductsQuery;
@@ -98,4 +97,4 @@ export const getStaticProps: GetStaticProps = async ({}) => {
   };
 };
 
-export default withApollo(ssrGetProducts.withPage()(Enroll));
+export default withPublicApollo(ssrGetProducts.withPage()(Enroll));
