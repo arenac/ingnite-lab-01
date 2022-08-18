@@ -3,14 +3,14 @@ import { CalendarIcon } from "@heroicons/react/solid";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { GetStaticProps } from "next";
-import { withPublicApollo } from "../lib/withPublicApollo";
+import { withApollo } from "../lib/withApollo";
 import {
   getServerPageGetProducts,
   ssrGetProducts,
 } from "../graphql/generated/pagePublic";
 import {
   GetProductsQuery,
-  // useCreatePurchaseMutation,
+  useCreatePurchaseMutation,
 } from "../graphql/generated/graphql";
 
 interface EnrollProps {
@@ -18,14 +18,14 @@ interface EnrollProps {
 }
 
 function Enroll({ data }: EnrollProps) {
-  // const [createPurchase] = useCreatePurchaseMutation();
+  const [createPurchase] = useCreatePurchaseMutation();
 
   async function handlePurchaseProduct(productId: string) {
-    // await createPurchase({
-    //   variables: {
-    //     productId,
-    //   },
-    // });
+    await createPurchase({
+      variables: {
+        productId,
+      },
+    });
 
     alert("Purchase completed!");
   }
@@ -97,4 +97,4 @@ export const getStaticProps: GetStaticProps = async ({}) => {
   };
 };
 
-export default withPublicApollo(ssrGetProducts.withPage()(Enroll));
+export default withApollo(ssrGetProducts.withPage()(Enroll));
